@@ -1,15 +1,99 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/ic_home_grey_24dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="fragments.ListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/parent_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:text="Placeholder Home Fragment" />
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/textInputContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <EditText
+                android:id="@+id/recordingNameField"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/xml_enter_button"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="8dp"
+                android:layout_weight="2"
+                android:hint="Recording Name"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/xml_enter_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/recordingNameField"
+                android:text="Enter"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/buttonContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textInputContainer"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="8dp">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/xml_record_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:enabled="false"
+                android:text="@string/string_start_recording"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/xml_play_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/xml_record_button"
+                android:enabled="false"
+                android:text="@string/string_start_playback"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/xml_new_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/xml_play_button"
+                android:enabled="false"
+                android:text="@string/string_new"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/recording_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonContainer"
+            android:padding="8dp">
+
+
+        </ListView>
+    </RelativeLayout>
 
 </FrameLayout>
