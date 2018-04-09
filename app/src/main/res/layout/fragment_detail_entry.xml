@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <!--Title-->
+        <LinearLayout
+            android:id="@+id/container_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="@string/string_title" />
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/edit_title"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/string_title"
+                android:inputType="textCapWords" />
+
+        </LinearLayout>
+
+        <!--Interviewee-->
+        <LinearLayout
+            android:id="@+id/container_interviewee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="@string/string_interviewee" />
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/edit_interviewee"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/string_interviewee"
+                android:inputType="textCapWords" />
+
+        </LinearLayout>
+
+        <!--Date-->
+        <LinearLayout
+            android:id="@+id/container_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="@string/string_date" />
+
+            <EditText
+                android:id="@+id/edit_date"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/string_date"
+                android:inputType="textCapWords" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/xml_skip_details_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/xml_enter_details_button"
+                android:enabled="true"
+                android:text="@string/string_skip"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/xml_enter_details_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight ="true"
+                android:layout_alignParentEnd="true"
+                android:enabled="true"
+                android:text="@string/string_enter"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>

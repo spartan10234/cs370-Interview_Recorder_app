@@ -12,12 +12,13 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import fragments.ListFragment;
-import fragments.RecordFragment;
+import fragments.DetailFragment;
 import fragments.SearchFragment;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    protected static String test = "DID THIS FUCKING WORK?";
     private TextView toolBarText;
     private Toolbar myToolbar;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_record:
 
                     toolBarText.setText(R.string.title_record);
-                    switchToRecordFragment();
+                    switchToDetailFragment();
                     return true;
                 case R.id.navigation_search:
 
@@ -109,13 +110,21 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void switchToRecordFragment(){
-        Fragment newFragment = new RecordFragment();
+    public void switchToDetailFragment(){
+        Fragment newFragment = new DetailFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container,newFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+//    public void switchToRecordFragment(){
+//        Fragment newFragment = new DetailFragment();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.fragment_container,newFragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
 
     public void switchToSearchFragment(){
         Fragment newFragment = new SearchFragment();
