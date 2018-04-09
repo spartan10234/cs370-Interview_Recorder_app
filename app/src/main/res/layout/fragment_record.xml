@@ -33,14 +33,6 @@
                 android:layout_margin="8dp"
                 android:src="@drawable/ic_mic_white_48dp" />
 
-            <ImageView
-                android:id="@+id/stop_recording_button"
-                android:layout_height="48dp"
-                android:layout_width = "0dp"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                android:src="@drawable/ic_stop_white_48dp" />
-
         </LinearLayout>
     </RelativeLayout>
 

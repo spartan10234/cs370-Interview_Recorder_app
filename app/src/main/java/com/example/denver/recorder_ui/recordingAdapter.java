@@ -40,7 +40,7 @@ public class recordingAdapter extends ArrayAdapter<recording> {
             @Override
             public void onClick(View v) {
                 //Switch to the detail view activity with details drawn from the recording object
-                Toast.makeText(getContext(), "Hi", Toast.LENGTH_SHORT);
+                Toast.makeText(getContext(), currentRecording.getInterviewee() + ' ' + currentRecording.getDate(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -51,7 +51,6 @@ public class recordingAdapter extends ArrayAdapter<recording> {
                 String fileToDelete = currentRecording.getFullFileName();
                 File file = new File(fileToDelete);
                 boolean deleted = file.delete();
-               // MainActivity.refreshContents();
                 remove(currentRecording);
             }
         });

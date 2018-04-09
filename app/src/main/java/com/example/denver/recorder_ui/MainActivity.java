@@ -1,6 +1,7 @@
 package com.example.denver.recorder_ui;
 
 import android.content.pm.PackageManager;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -19,6 +20,7 @@ import fragments.SearchFragment;
 public class MainActivity extends AppCompatActivity {
 
     protected static String test = "DID THIS FUCKING WORK?";
+    public static MediaRecorder recorder = null;
     private TextView toolBarText;
     private Toolbar myToolbar;
 

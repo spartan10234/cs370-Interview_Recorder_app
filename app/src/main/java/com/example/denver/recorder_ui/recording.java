@@ -19,11 +19,15 @@ public class recording {
     public recording(String f){
         full_file_name = f;
         this.retreiveData();
+        interviewee_attribute = "Unnamed";
+        date_attribute = "Undated";
     }
 
     public recording(String f, String s){
         full_file_name = f;
         recording_title = s;
+        interviewee_attribute = "Unnamed";
+        date_attribute = "Undated";
     }
 
     public recording(String f, String s, String i, String d){
