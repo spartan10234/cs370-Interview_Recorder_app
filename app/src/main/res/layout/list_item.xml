@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/list_item_title"
         android:layout_width="0dp"
         android:layout_weight="3"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:ellipsize="end"
         android:text="Sample Name"/>
     <TextView
-        android:id="@+id/xml_details_view"
+        android:id="@+id/list_item_details_button"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:textAllCaps="true"/>
 
     <TextView
-        android:id="@+id/xml_delete_view"
+        android:id="@+id/list_item_delete_button"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"

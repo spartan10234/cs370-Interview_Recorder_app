@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+
+import fragments.DatabaseTestFragment;
 import fragments.ListFragment;
 import fragments.DetailFragment;
 import fragments.SearchFragment;
@@ -19,7 +21,6 @@ import fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected static String test = "DID THIS FUCKING WORK?";
     public static MediaRecorder recorder = null;
     private TextView toolBarText;
     private Toolbar myToolbar;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_search:
 
                     toolBarText.setText(R.string.title_search);
-                    switchToSearchFragment();
+                    switchToDatabaseTestFragment();
                     return true;
             }
             return false;
@@ -120,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-//    public void switchToRecordFragment(){
-//        Fragment newFragment = new DetailFragment();
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.fragment_container,newFragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//    }
+   public void switchToDatabaseTestFragment(){
+        Fragment newFragment = new DatabaseTestFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container,newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
     public void switchToSearchFragment(){
         Fragment newFragment = new SearchFragment();

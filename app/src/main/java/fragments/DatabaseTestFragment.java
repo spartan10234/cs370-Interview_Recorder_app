@@ -6,8 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.denver.recorder_ui.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import database.RecordingDatabase;
 import database.RecordingEntity;
@@ -21,6 +25,7 @@ public class DatabaseTestFragment extends Fragment {
 
     //Declare Buttons, TextViews, etc.
     Button SB;
+    TextView firstName, lastName, fileLength, description, imgFile, title, audioFile;
 
     //Declare ArrayList to hold database objects
     List<RecordingEntity> list;
@@ -31,8 +36,8 @@ public class DatabaseTestFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_database_test, container, false);
 
         SB = view.findViewById(R.id.save_button);
-
-        //Set the database
+        firstName = view.findViewById(R.id.first_name);
+//        //Set the database
         RD = RecordingDatabase.getRecordingDatabase(getContext());
 
 
@@ -55,16 +60,19 @@ public class DatabaseTestFragment extends Fragment {
                 RD.RecordingDao().insert(newR);
             }
         });
-
-        //This is how you would store all of the recordings into an ArrayList
+//
+//        //This is how you would store all of the recordings into an ArrayList
         list = RD.RecordingDao().getAllRecordings();
-
-        //To retrieve single entity from database. I'll write a query to receive a single item later
-        RecordingEntity e = list.get(0);
-
-        //To clear the items from database. I'll write a query to delete a single item later
-        RD.RecordingDao().deleteAll();
-
+        int i = list.size();
+//        //To retrieve single entity from database. I'll write a query to receive a single item later
+        if(i > 0) {
+            RecordingEntity e = list.get(0);
+            firstName.setText(e.getFirstName());
+        }
+//
+//      //To clear the items from database. I'll write a query to delete a single item later
+        //RD.RecordingDao().deleteAll();
+//
 
 
         return view;

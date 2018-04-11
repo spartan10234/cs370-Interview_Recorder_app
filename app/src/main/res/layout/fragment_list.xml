@@ -17,7 +17,7 @@
                 android:text="@string/string_start_playback"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/recording_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:padding="8dp">
 
 
-        </ListView>
+        </android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 
 </FrameLayout>

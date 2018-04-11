@@ -4,23 +4,21 @@ package fragments;
 import android.content.Context;
 import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.denver.recorder_ui.MainActivity;
 import com.example.denver.recorder_ui.R;
 import com.example.denver.recorder_ui.recording;
 import com.example.denver.recorder_ui.recordingAdapter;
@@ -28,6 +26,10 @@ import com.example.denver.recorder_ui.recordingAdapter;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import database.RecordingDatabase;
+import database.RecordingEntity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,9 +42,14 @@ public class ListFragment extends Fragment {
     protected static ArrayList<recording> listOfRecordings = new ArrayList<recording>();
     protected static recordingAdapter adapter = null;
 
+
+
+    protected static List<RecordingEntity> list;
+    protected RecordingDatabase RD;
+
     //Element declarations
     AppCompatButton play_button;
-    ListView listView;
+    RecyclerView recyclerView;
     EditText recording_name_field;
 
     //For accessing and storing audio files
@@ -98,16 +105,17 @@ public class ListFragment extends Fragment {
         View list_frag_view = inflater.inflate(R.layout.fragment_list, container, false);;
         play_button = list_frag_view.findViewById(R.id.xml_play_button);
 
-        listView = list_frag_view.findViewById(R.id.recording_container);
+        recyclerView = list_frag_view.findViewById(R.id.recording_container);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
        // enter_button.setOnClickListener(enter_listener);
         play_button.setOnClickListener(play_listener);
        // record_button.setOnClickListener(record_listener);
 
-        adapter = new recordingAdapter(getActivity(), listOfRecordings);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(list_item_listener);
+//        adapter = new recordingAdapter(getActivity(), listOfRecordings);
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setOnItemClickListener(list_item_listener);
 
         // Inflate the layout for this fragment
         return list_frag_view;
@@ -145,16 +153,16 @@ public class ListFragment extends Fragment {
     AdapterView.OnItemClickListener list_item_listener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            recording listItem = (recording) listView.getItemAtPosition(position);
-            for (int i = 0; i < listView.getChildCount(); i++) {
+            recording listItem = (recording) recyclerView.getItemAtPosition(position);
+            for (int i = 0; i < recyclerView.getChildCount(); i++) {
                 if (position == i) {
-                    View temp = listView.getChildAt(i);
-                    TextView txtView = ((TextView) temp.findViewById(R.id.item_name));
+                    View temp = recyclerView.getChildAt(i);
+                    TextView txtView = ((TextView) temp.findViewById(R.id.list_item_title));
                     txtView.setTextColor(getResources().getColor(R.color.colorAccent));
 
                 } else {
-                    View temp = listView.getChildAt(i);
-                    TextView txtView = ((TextView) temp.findViewById(R.id.item_name));
+                    View temp = recyclerView.getChildAt(i);
+                    TextView txtView = ((TextView) temp.findViewById(R.id.list_item_title));
                     txtView.setTextColor(Color.BLACK);
                 }
 

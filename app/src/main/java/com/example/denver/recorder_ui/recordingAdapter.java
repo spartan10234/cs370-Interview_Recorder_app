@@ -32,10 +32,10 @@ public class recordingAdapter extends ArrayAdapter<recording> {
 
         final recording currentRecording = getItem(position);
 
-        TextView fileNameTextView = listItemView.findViewById(R.id.item_name);
+        TextView fileNameTextView = listItemView.findViewById(R.id.list_item_title);
         fileNameTextView.setText(currentRecording.getRecordingTitle());
 
-        TextView detailsTextView = listItemView.findViewById(R.id.xml_details_view);
+        TextView detailsTextView = listItemView.findViewById(R.id.list_item_details_button);
         detailsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +44,7 @@ public class recordingAdapter extends ArrayAdapter<recording> {
             }
         });
 
-        TextView deleteTextView = listItemView.findViewById(R.id.xml_delete_view);
+        TextView deleteTextView = listItemView.findViewById(R.id.list_item_delete_button);
         deleteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
