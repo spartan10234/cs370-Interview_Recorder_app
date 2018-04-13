@@ -36,16 +36,17 @@ public class RecordingEntityAdapter extends RecyclerView.Adapter<RecordingEntity
 
     @Override
     public void onBindViewHolder(@NonNull RecordingEntityAdapter.ViewHolder holder, int position) {
-
+       String s = items.get(position).getTitle();
+        holder.title_field.setText(s);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return items.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView title_field;
+        public TextView title_field = null;
         public ViewHolder(View itemView) {
             super(itemView);
             title_field = (TextView) itemView.findViewById(R.id.list_item_title);

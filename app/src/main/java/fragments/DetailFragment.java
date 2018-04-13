@@ -63,6 +63,8 @@ public class DetailFragment extends Fragment {
                 title_field.getText().clear();
                 interviewee_field.getText().clear();
                 date_field.getText().clear();
+                //TODO setter<-costructor
+
                 ListFragment.listOfRecordings.add(new recording(fileName, input_title, input_interviewee, input_interviewee));
                 startActivity(i);
 
@@ -77,8 +79,10 @@ public class DetailFragment extends Fragment {
                 fileName = ListFragment.directory.toString() + '/' + input_title + ".3gp";
                 ListFragment.listOfRecordings.add(new recording(fileName, input_title));
                 startActivity(i);
+                //Comes back here
             }
         });
+        //Goes on onPause while in other activity
 
 
 
