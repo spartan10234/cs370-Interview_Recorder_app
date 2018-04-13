@@ -106,10 +106,10 @@ public class ListFragment extends Fragment {
         Toast.makeText(getActivity(), "Items in Database: " + adapter.getItemCount(),Toast.LENGTH_SHORT).show();
 
         //Hook up our recyclerView to its layout
-//        recyclerView = list_frag_view.findViewById(R.id.recording_container);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerView.setAdapter(adapter);
-//
+        recyclerView = list_frag_view.findViewById(R.id.recording_container);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
+
 //        play_button.setOnClickListener(play_listener);
 //
         add_button.setOnClickListener(new View.OnClickListener() {

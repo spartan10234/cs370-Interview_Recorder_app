@@ -29,7 +29,7 @@ public class RecordingEntityAdapter extends RecyclerView.Adapter<RecordingEntity
     @NonNull
     @Override
     public RecordingEntityAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(itemLayout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new ViewHolder(v);
 
     }
@@ -37,7 +37,7 @@ public class RecordingEntityAdapter extends RecyclerView.Adapter<RecordingEntity
     @Override
     public void onBindViewHolder(@NonNull RecordingEntityAdapter.ViewHolder holder, int position) {
        String s = items.get(position).getTitle();
-        holder.title_field.setText(s);
+       holder.title_field.setText(s);
     }
 
     @Override
