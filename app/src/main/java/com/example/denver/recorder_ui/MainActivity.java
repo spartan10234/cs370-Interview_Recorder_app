@@ -1,5 +1,6 @@
 package com.example.denver.recorder_ui;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -135,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container,newFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 
