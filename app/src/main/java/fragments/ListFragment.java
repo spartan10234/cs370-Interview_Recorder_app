@@ -2,6 +2,7 @@ package fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,11 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.denver.recorder_ui.R;
-import com.example.denver.recorder_ui.RecordingEntityAdapter;
+import database.RecordingEntityAdapter;
 import com.example.denver.recorder_ui.recording;
 import com.example.denver.recorder_ui.recordingAdapter;
 
@@ -29,6 +29,7 @@ import java.util.List;
 
 import database.RecordingDatabase;
 import database.RecordingEntity;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,17 +79,9 @@ public class ListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         //Get the name of our directory and load all the files currently stored in it
         directory = getActivity().getDir("Recordings", Context.MODE_PRIVATE);
         Recordings_Contents = directory.listFiles();
-
-//        //From audio files, create recording objects and load into arraylist, which will
-//        //then be shown in the listview.
-        listOfRecordings.clear();
-        for (int i = 0; i < Recordings_Contents.length; i++) {
-            listOfRecordings.add(new recording(Recordings_Contents[i].toString()));
-        }
 
     }
 
@@ -102,7 +95,15 @@ public class ListFragment extends Fragment {
         RD = RecordingDatabase.getRecordingDatabase(getContext());
 
         list = RD.RecordingDao().getAllRecordings();
-        final RecordingEntityAdapter adapter = new RecordingEntityAdapter(list, R.id.list_item);
+        final RecordingEntityAdapter adapter = new RecordingEntityAdapter(list, R.id.list_item, new RecordingEntityAdapter.OnItemClickListener(){
+            @Override
+            public void onItemClick(RecordingEntity item) {
+                Toast.makeText(getActivity(), "ID is : " + item.getRecordingId(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(), DetailFragment.class);
+                //i.putExtra("item", item);
+            }
+        });
+
         Toast.makeText(getActivity(), "Items in Database: " + adapter.getItemCount(),Toast.LENGTH_SHORT).show();
 
         //Hook up our recyclerView to its layout

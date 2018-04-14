@@ -23,4 +23,8 @@
     <string name="string_skip">Skip</string>
     <string name="title_activity_detail_edit">DetailEditActivity</string>
     <string name="title_activity_recording">RecordingActivity</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="description">Description</string>
+
 </resources>

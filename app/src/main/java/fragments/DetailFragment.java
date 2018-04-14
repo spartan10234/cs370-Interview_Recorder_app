@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.denver.recorder_ui.MainActivity;
 import com.example.denver.recorder_ui.R;
 import com.example.denver.recorder_ui.RecordActivity;
 import com.example.denver.recorder_ui.recording;
@@ -22,17 +20,21 @@ import com.example.denver.recorder_ui.recording;
 public class DetailFragment extends Fragment {
 
     EditText title_field;
-    EditText interviewee_field;
+    EditText first_field;
+    EditText last_field;
     EditText date_field;
+    EditText desc_field;
 
     AppCompatButton skip_button;
     AppCompatButton enter_button;
 
     //Strings to hold user inputs
-    public static String input_title = "Untitled";
-    protected String input_interviewee = "Unnamed";
+    protected String input_title = "Untitled";
+    protected String input_first_name = "Unnamed";
+    protected String input_last_name = "Unnamed";
     protected String input_date = "Undated";
-    public static String fileName = null;
+    protected String input_desc = "Blank";
+    public static String new_file_name = null;
 
 
 
@@ -46,8 +48,10 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View detail_frag_view = inflater.inflate(R.layout.fragment_detail_entry, container, false);
         title_field = detail_frag_view.findViewById(R.id.edit_title);
-        interviewee_field=detail_frag_view.findViewById(R.id.edit_interviewee);
+        first_field = detail_frag_view.findViewById(R.id.edit_first_name);
+        last_field = detail_frag_view.findViewById(R.id.edit_last_name);
         date_field = detail_frag_view.findViewById(R.id.edit_date);
+        desc_field = detail_frag_view.findViewById(R.id.edit_description);
         final Intent i = new Intent(getActivity(), RecordActivity.class);
 
         enter_button = detail_frag_view.findViewById(R.id.xml_enter_details_button);
@@ -57,15 +61,19 @@ public class DetailFragment extends Fragment {
                 input_title = title_field.getText().toString();
                 //If title is unique, proceed. Else display error message and wait for a unique
                 //title
-                input_interviewee = interviewee_field.getText().toString();
+                input_first_name = first_field.getText().toString();
+                input_last_name = last_field.getText().toString();
                 input_date = date_field.getText().toString();
-                fileName = ListFragment.directory.toString() + '/' + input_title + ".3gp";
+                input_desc = desc_field.getText().toString();
+                new_file_name = ListFragment.directory.toString() + '/' + input_title + ".3gp";
                 title_field.getText().clear();
-                interviewee_field.getText().clear();
+                first_field.getText().clear();
+                last_field.getText().clear();
                 date_field.getText().clear();
-                //TODO setter<-costructor
+                desc_field.getText().clear();
+                //TODO setter<-constructor
 
-                ListFragment.listOfRecordings.add(new recording(fileName, input_title, input_interviewee, input_interviewee));
+                ListFragment.listOfRecordings.add(new recording(new_file_name, input_title, input_first_name, input_first_name));
                 startActivity(i);
 
             }
@@ -76,8 +84,8 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: Figure out way to generate unique filenames
-                fileName = ListFragment.directory.toString() + '/' + input_title + ".3gp";
-                ListFragment.listOfRecordings.add(new recording(fileName, input_title));
+                new_file_name = ListFragment.directory.toString() + '/' + input_title + ".3gp";
+                ListFragment.listOfRecordings.add(new recording(new_file_name, input_title));
                 startActivity(i);
                 //Comes back here
             }

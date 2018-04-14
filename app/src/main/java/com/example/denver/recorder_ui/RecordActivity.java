@@ -11,14 +11,12 @@ import android.widget.Toast;
 import java.io.IOException;
 
 import fragments.DetailFragment;
-import fragments.ListFragment;
 
 public class RecordActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "RecordActivity";
 
     ImageView record_button;
-
     MediaRecorder recorder = null;
 
     //states
@@ -74,7 +72,8 @@ public class RecordActivity extends AppCompatActivity {
 
         //I think here is where I need to add the internal storage
         //directory as an argument
-        recorder.setOutputFile(DetailFragment.fileName);
+        //TODO have this be sent by putExtra
+        recorder.setOutputFile(DetailFragment.new_file_name);
 
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
         //Does some final magic to get the recorder ready.
@@ -91,7 +90,7 @@ public class RecordActivity extends AppCompatActivity {
         //refreshContents();
         recorder.stop();
         recorder.release();
-        Toast.makeText(RecordActivity.this, "Saved to: " + DetailFragment.fileName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(RecordActivity.this, "Saved to: " + DetailFragment.new_file_name, Toast.LENGTH_SHORT).show();
         recorder = null;
     }
 }

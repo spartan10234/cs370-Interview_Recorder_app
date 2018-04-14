@@ -18,6 +18,9 @@ public class RecordingEntity {
     @ColumnInfo(name = "last_name")
     private String lastName;
 
+    @ColumnInfo(name = "date")
+    private String date;
+
     @ColumnInfo(name = "length")
     private String length;
 
@@ -66,6 +69,10 @@ public class RecordingEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getDate() { return date;}
+
+    public void setDate(String date) { this.date = date; }
 
     public String getLength() {
         return length;
