@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView toolBarText;
     private Toolbar myToolbar;
 
+    boolean editable = true;
+
 // Permission Request Variables
     protected static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     protected boolean permissionToRecordAccepted = false;

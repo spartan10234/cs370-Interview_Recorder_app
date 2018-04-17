@@ -100,22 +100,31 @@
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/xml_skip_details_button"
+                android:id="@+id/skip_details_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/xml_enter_details_button"
+                android:layout_toLeftOf="@id/enter_details_button"
                 android:enabled="true"
                 android:text="@string/string_skip"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/xml_enter_details_button"
+                android:id="@+id/enter_details_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:enabled="true"
                 android:text="@string/string_enter"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/leave_details_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:enabled="true"
+                android:text="@string/string_cancel"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
         </RelativeLayout>
     </LinearLayout>

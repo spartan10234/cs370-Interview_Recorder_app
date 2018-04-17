@@ -10,11 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.denver.recorder_ui.R;
 import com.example.denver.recorder_ui.RecordActivity;
-import com.example.denver.recorder_ui.recording;
+import old_files_for_Reference_will_be_deleted.recording;
 
 import database.RecordingDatabase;
 import database.RecordingEntity;
@@ -32,6 +31,7 @@ public class DetailFragment extends Fragment {
 
     AppCompatButton skip_button;
     AppCompatButton enter_button;
+    AppCompatButton cancel_button;
 
     //Database
     //Database
@@ -63,7 +63,7 @@ public class DetailFragment extends Fragment {
         desc_field = detail_frag_view.findViewById(R.id.edit_description);
         final Intent i = new Intent(getActivity(), RecordActivity.class);
 
-        enter_button = detail_frag_view.findViewById(R.id.xml_enter_details_button);
+        enter_button = detail_frag_view.findViewById(R.id.enter_details_button);
         enter_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,22 +72,26 @@ public class DetailFragment extends Fragment {
                    startActivityForResult(i, 2);
                }
 
-                //TODO setter<-constructor
+
 
             }
         });
 
-        skip_button = detail_frag_view.findViewById(R.id.xml_skip_details_button);
+        skip_button = detail_frag_view.findViewById(R.id.skip_details_button);
         skip_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Figure out way to generate unique filenames
                 new_file_name = ListFragment.directory.toString() + '/' + input_title + ".3gp";
                 ListFragment.listOfRecordings.add(new recording(new_file_name, input_title));
-                startActivity(i);
-                //Comes back here
+                startActivityForResult(i, 2);
+
             }
         });
+
+        cancel_button = detail_frag_view.findViewById(R.id.leave_details_button);
+        cancel_button.setEnabled(false);
+        cancel_button.setVisibility(View.INVISIBLE);
         //Goes on onPause while in other activity
 
 
