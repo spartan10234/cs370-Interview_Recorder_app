@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 import database.RecordingDatabase;
 import database.RecordingEntity;
 
@@ -14,6 +16,8 @@ public class ViewDetails extends AppCompatActivity {
     EditText title_field, first_name_field, last_name_field, date_field, desc_field;
    // AppCompatButton skip_button, enter_button, temp_button;
     RecordingDatabase RD;
+    protected static List<RecordingEntity> list;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,7 @@ public class ViewDetails extends AppCompatActivity {
         Toast.makeText(this, "VIEWDETAILS ID IS: " + id, Toast.LENGTH_SHORT).show();
         RD = RecordingDatabase.getRecordingDatabase(this);
         RecordingEntity item = RD.RecordingDao().searchId(id);
+        Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
 
 //        title_field = findViewById(R.id.edit_title);
 //        title_field.setText(item.getTitle());
