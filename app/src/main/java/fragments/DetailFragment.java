@@ -13,8 +13,6 @@ import android.widget.EditText;
 
 import com.example.denver.recorder_ui.R;
 import com.example.denver.recorder_ui.RecordActivity;
-import old_files_for_Reference_will_be_deleted.recording;
-
 import database.RecordingDatabase;
 import database.RecordingEntity;
 
@@ -83,7 +81,6 @@ public class DetailFragment extends Fragment {
             public void onClick(View v) {
                 //TODO: Figure out way to generate unique filenames
                 new_file_name = ListFragment.directory.toString() + '/' + input_title + ".3gp";
-                ListFragment.listOfRecordings.add(new recording(new_file_name, input_title));
                 startActivityForResult(i, 2);
 
             }
