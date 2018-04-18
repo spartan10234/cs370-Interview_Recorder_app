@@ -15,28 +15,5 @@
         android:maxLines="2"
         android:ellipsize="end"
         android:text="Sample Name"/>
-    <TextView
-        android:id="@+id/list_item_details_button"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="details"
-        android:paddingTop="8dp"
-        android:paddingVertical="16dp"
-        android:paddingHorizontal="8dp"
-        android:textAllCaps="true"/>
-
-    <TextView
-        android:id="@+id/list_item_delete_button"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="delete"
-        android:gravity="center_vertical"
-        android:paddingTop="8dp"
-        android:paddingVertical="16dp"
-        android:paddingHorizontal="8dp"
-        android:textAllCaps="true"/>
-
 
 </LinearLayout>

@@ -7,15 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/play_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:enabled="false"
-                android:text="@string/string_start_playback"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
         <Button
             android:id="@+id/add_data"
             android:layout_width="wrap_content"
@@ -23,13 +15,13 @@
             android:text="Add"
             android:padding="8dp"
             android:layout_marginHorizontal="8dp"
-            android:layout_toRightOf="@id/play_button"/>
+            android:layout_alignParentStart="true"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recording_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/play_button"
+            android:layout_below="@id/add_data"
             android:padding="8dp">
 
 

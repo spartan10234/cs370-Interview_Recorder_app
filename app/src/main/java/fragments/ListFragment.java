@@ -25,8 +25,7 @@ import com.example.denver.recorder_ui.R;
 import com.example.denver.recorder_ui.ViewDetails;
 
 import database.RecordingEntityAdapter;
-import old_files_for_Reference_will_be_deleted.recording;
-import old_files_for_Reference_will_be_deleted.recordingAdapter;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +44,6 @@ public class ListFragment extends Fragment {
     private static final String LOG_TAG = "ListFragment";
 
     //For populating the list of recordings
-    protected static ArrayList<recording> listOfRecordings = new ArrayList<recording>();
     protected static RecordingEntityAdapter adapter = null;
 
     //For accessing the database
@@ -93,7 +91,6 @@ public class ListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View list_frag_view = inflater.inflate(R.layout.fragment_list, container, false);;
-        play_button = list_frag_view.findViewById(R.id.play_button);
         add_button = list_frag_view.findViewById(R.id.add_data);
 
         RD = RecordingDatabase.getRecordingDatabase(getContext());
@@ -139,55 +136,55 @@ public class ListFragment extends Fragment {
 
    }
 
-    View.OnClickListener play_listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            onPlay(startPlaying);
-            if (startPlaying) {
-                play_button.setText("Stop Playing");
-                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        play_button.setText("Start Playing");
-                        stopPlaying();
-                        startPlaying = !startPlaying;
-
-                    }
-                });
-            } else {
-                play_button.setText("Start Playing");
-            }
-            startPlaying = !startPlaying;
-        }
-    };
-
-
-    //Record/Play Functions
-    private void onPlay(boolean start) {
-        if (start)
-            startPlaying();
-        else
-            stopPlaying();
-    }
-
-    private void startPlaying() {
-        player = new MediaPlayer();
-        try {
-            player.setDataSource(file_name);
-            player.prepare();
-            player.start();
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "Couldn't load media file: " + file_name);
-        }
-    }
-
-    //TODO: add a pause button for playback
-
-    //Release resources when finished to get memory back
-    private void stopPlaying() {
-        player.release();
-        player = null;
-    }
+//    View.OnClickListener play_listener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            onPlay(startPlaying);
+//            if (startPlaying) {
+//                play_button.setText("Stop Playing");
+//                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                    @Override
+//                    public void onCompletion(MediaPlayer mp) {
+//                        play_button.setText("Start Playing");
+//                        stopPlaying();
+//                        startPlaying = !startPlaying;
+//
+//                    }
+//                });
+//            } else {
+//                play_button.setText("Start Playing");
+//            }
+//            startPlaying = !startPlaying;
+//        }
+//    };
+//
+//
+//    //Record/Play Functions
+//    private void onPlay(boolean start) {
+//        if (start)
+//            startPlaying();
+//        else
+//            stopPlaying();
+//    }
+//
+//    private void startPlaying() {
+//        player = new MediaPlayer();
+//        try {
+//            player.setDataSource(file_name);
+//            player.prepare();
+//            player.start();
+//        } catch (IOException e) {
+//            Log.e(LOG_TAG, "Couldn't load media file: " + file_name);
+//        }
+//    }
+//
+//    //TODO: add a pause button for playback
+//
+//    //Release resources when finished to get memory back
+//    private void stopPlaying() {
+//        player.release();
+//        player = null;
+//    }
 
     private void createDummyData(){
         RD = RecordingDatabase.getRecordingDatabase(getContext());
