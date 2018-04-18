@@ -29,9 +29,9 @@ public class DetailFragment extends Fragment {
     EditText date_field;
     EditText desc_field;
 
-    AppCompatButton skip_button;
-    AppCompatButton enter_button;
-    AppCompatButton cancel_button;
+    private AppCompatButton skip_button;
+    private AppCompatButton enter_button;
+    private AppCompatButton cancel_button;
 
     //Database
     //Database
@@ -89,9 +89,6 @@ public class DetailFragment extends Fragment {
             }
         });
 
-        cancel_button = detail_frag_view.findViewById(R.id.leave_details_button);
-        cancel_button.setEnabled(false);
-        cancel_button.setVisibility(View.INVISIBLE);
         //Goes on onPause while in other activity
 
 
@@ -132,6 +129,7 @@ public class DetailFragment extends Fragment {
         newR.setFirstName(input_first_name);
         newR.setLastName(input_last_name);
         newR.setLength("0:00");
+        newR.setDate(input_date);
         newR.setDescription(input_desc);
         newR.setImgFile("loss.jpg");
         newR.setTitle(input_title);

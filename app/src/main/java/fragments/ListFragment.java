@@ -104,7 +104,6 @@ public class ListFragment extends Fragment {
         adapter = new RecordingEntityAdapter(list, R.id.list_item, new RecordingEntityAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(RecordingEntity item) {
-                Toast.makeText(getActivity(), "ID is : " + item.getRecordingId(), Toast.LENGTH_SHORT).show();
                 file_name = item.getAudioFile();
                 play_button.setEnabled(true);
                 //Toast.makeText(getActivity(), "Selected Item: " + adapter.focusedItem, Toast.LENGTH_SHORT).show();
@@ -112,7 +111,7 @@ public class ListFragment extends Fragment {
             }
         });
 
-        Toast.makeText(getActivity(), "Items in Database: " + adapter.getItemCount(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "Items in Database: " + adapter.getItemCount(),Toast.LENGTH_SHORT).show();
 
         //Hook up our recyclerView to its layout
         recyclerView = list_frag_view.findViewById(R.id.recording_container);
@@ -127,7 +126,6 @@ public class ListFragment extends Fragment {
                 createDummyData();
                 list = RD.RecordingDao().getAllRecordings();
                 adapter.notifyItemInserted(list.size()-1);
-               // Toast.makeText(getActivity(), "Items in Database: " + adapter.getItemCount(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -163,27 +161,6 @@ public class ListFragment extends Fragment {
         }
     };
 
-//    AdapterView.OnItemClickListener list_item_listener = new AdapterView.OnItemClickListener() {
-//        @Override
-//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//            recording listItem = (recording) recyclerView.getItemAtPosition(position);
-//            for (int i = 0; i < recyclerView.getChildCount(); i++) {
-//                if (position == i) {
-//                    View temp = recyclerView.getChildAt(i);
-//                    TextView txtView = ((TextView) temp.findViewById(R.id.list_item_title));
-//                    txtView.setTextColor(getResources().getColor(R.color.colorAccent));
-//
-//                } else {
-//                    View temp = recyclerView.getChildAt(i);
-//                    TextView txtView = ((TextView) temp.findViewById(R.id.list_item_title));
-//                    txtView.setTextColor(Color.BLACK);
-//                }
-//
-//            }
-//            file_name = listItem.getFullFileName();
-//            play_button.setEnabled(true);
-//        }
-//    };
 
     //Record/Play Functions
     private void onPlay(boolean start) {
@@ -212,17 +189,13 @@ public class ListFragment extends Fragment {
         player = null;
     }
 
-    public static void refreshContents() {
-        Recordings_Contents = directory.listFiles();
-        adapter.notifyDataSetChanged();
-    }
-
     private void createDummyData(){
         RD = RecordingDatabase.getRecordingDatabase(getContext());
         final RecordingEntity newR = new RecordingEntity();
         newR.setFirstName("Denver");
         newR.setLastName("Gregory");
         newR.setLength("01:12");
+        newR.setDate("01/23/45");
         newR.setDescription("This is a new test recording");
         newR.setImgFile("img234.jpg");
         newR.setTitle("New Title");

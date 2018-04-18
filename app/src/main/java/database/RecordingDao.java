@@ -22,7 +22,7 @@ public interface RecordingDao {
             + "OR last_name LIKE :search")
     List<RecordingEntity> searchName(String search);
 
-    @Query("SELECT * FROM recording_table WHERE recordingId MATCH :search")
-    RecordingEntity searchId(int search);
+    @Query("SELECT * FROM recording_table WHERE recordingId LIKE :search")
+    List<RecordingEntity> searchId(int search);
 
 }
