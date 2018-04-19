@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_search:
 
                     toolBarText.setText(R.string.title_search);
-                    switchToDatabaseTestFragment();
+                    switchToSearchFragment();
                     return true;
             }
             return false;

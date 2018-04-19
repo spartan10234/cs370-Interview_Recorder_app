@@ -51,8 +51,6 @@ public class ListFragment extends Fragment {
     protected RecordingDatabase RD;
 
     //Element declarations
-    AppCompatButton play_button;
-    Button add_button;
     RecyclerView recyclerView;
 
 
@@ -91,7 +89,6 @@ public class ListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View list_frag_view = inflater.inflate(R.layout.fragment_list, container, false);;
-        add_button = list_frag_view.findViewById(R.id.add_data);
 
         RD = RecordingDatabase.getRecordingDatabase(getContext());
 
@@ -102,7 +99,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onItemClick(RecordingEntity item) {
                 file_name = item.getAudioFile();
-                play_button.setEnabled(true);
+
                 //Toast.makeText(getActivity(), "Selected Item: " + adapter.focusedItem, Toast.LENGTH_SHORT).show();
                 openItemDetails(item);
             }
@@ -115,17 +112,6 @@ public class ListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-//        play_button.setOnClickListener(play_listener);
-//
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createDummyData();
-                list = RD.RecordingDao().getAllRecordings();
-                adapter.notifyItemInserted(list.size()-1);
-            }
-        });
-
         return list_frag_view;
     }
 
@@ -135,56 +121,6 @@ public class ListFragment extends Fragment {
 
 
    }
-
-//    View.OnClickListener play_listener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            onPlay(startPlaying);
-//            if (startPlaying) {
-//                play_button.setText("Stop Playing");
-//                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//                    @Override
-//                    public void onCompletion(MediaPlayer mp) {
-//                        play_button.setText("Start Playing");
-//                        stopPlaying();
-//                        startPlaying = !startPlaying;
-//
-//                    }
-//                });
-//            } else {
-//                play_button.setText("Start Playing");
-//            }
-//            startPlaying = !startPlaying;
-//        }
-//    };
-//
-//
-//    //Record/Play Functions
-//    private void onPlay(boolean start) {
-//        if (start)
-//            startPlaying();
-//        else
-//            stopPlaying();
-//    }
-//
-//    private void startPlaying() {
-//        player = new MediaPlayer();
-//        try {
-//            player.setDataSource(file_name);
-//            player.prepare();
-//            player.start();
-//        } catch (IOException e) {
-//            Log.e(LOG_TAG, "Couldn't load media file: " + file_name);
-//        }
-//    }
-//
-//    //TODO: add a pause button for playback
-//
-//    //Release resources when finished to get memory back
-//    private void stopPlaying() {
-//        player.release();
-//        player = null;
-//    }
 
     private void createDummyData(){
         RD = RecordingDatabase.getRecordingDatabase(getContext());

@@ -42,7 +42,7 @@ public class ViewDetails extends AppCompatActivity {
         RD = RecordingDatabase.getRecordingDatabase(this);
         list = RD.RecordingDao().searchId(id);
         RecordingEntity item = list.get(0);
-        Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
 
         title_field = findViewById(R.id.edit_title);
         first_name_field = findViewById(R.id.edit_first_name);
