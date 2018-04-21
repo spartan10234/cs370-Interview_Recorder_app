@@ -27,7 +27,6 @@ public class DetailFragment extends Fragment {
     EditText date_field;
     EditText desc_field;
 
-    private AppCompatButton skip_button;
     private AppCompatButton enter_button;
     private AppCompatButton cancel_button;
 
@@ -75,16 +74,7 @@ public class DetailFragment extends Fragment {
             }
         });
 
-        skip_button = detail_frag_view.findViewById(R.id.skip_details_button);
-        skip_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: Figure out way to generate unique filenames
-                new_file_name = ListFragment.directory.toString() + '/' + input_title + ".3gp";
-                startActivityForResult(i, 2);
 
-            }
-        });
 
         //Goes on onPause while in other activity
 

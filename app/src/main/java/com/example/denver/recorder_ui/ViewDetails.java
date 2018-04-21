@@ -51,7 +51,8 @@ public class ViewDetails extends AppCompatActivity {
         desc_field = findViewById(R.id.edit_description);
         setFields(item);
 
-        play_button = findViewById(R.id.skip_details_button);
+        play_button = findViewById(R.id.play_button);
+        play_button.setVisibility(View.VISIBLE);
         play_button.setText(R.string.string_start_playback);
         play_button.setOnClickListener(play_listener);
 
