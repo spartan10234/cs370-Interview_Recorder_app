@@ -56,7 +56,7 @@ public class DetailFragment extends Fragment {
     //For Image File
     File image_directory;
     private Uri image_uri;
-    private String image_file_path = "";
+    private String image_file_path = null;
     int view_height, view_width, image_width, image_height, scale_factor;
 
 
@@ -107,6 +107,9 @@ public class DetailFragment extends Fragment {
         photo_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //if( image_file_path != null){
+                //delete whatever file is there first
+                //}
                 dispatchTakePictureIntent();
             }
         });
@@ -117,7 +120,7 @@ public class DetailFragment extends Fragment {
     private void dispatchTakePictureIntent() {
         if (!title_field.getText().toString().isEmpty()) {
             input_title = title_field.getText().toString();
-            title_field.setEnabled(false);
+
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
             if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -197,10 +200,12 @@ public class DetailFragment extends Fragment {
 
    private boolean getData() {
         if (!title_field.getText().toString().isEmpty()) {
+
             input_title = title_field.getText().toString();
+
             //Check title uniqueness
             list = RD.RecordingDao().searchTitle(input_title);
-            if (list.size() == 0) {
+            if (list.size() != 0) {
                 Toast.makeText(getActivity(), "Please Enter Unique Name", Toast.LENGTH_SHORT).show();
                 return false;
             }

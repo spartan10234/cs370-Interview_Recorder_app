@@ -1,5 +1,7 @@
 package com.example.denver.recorder_ui;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,12 +24,13 @@ public class ViewDetails extends AppCompatActivity {
 
     private static final String LOG_TAG = "ViewDetails";
     private EditText title_field, first_name_field, last_name_field, date_field, desc_field;
-    ImageView photo_field;
+    ImageView image_field;
     private AppCompatButton play_button, cancel_button;
     private RecordingDatabase RD;
     private String audio_file_name;
-    private String image_file_name;
     private MediaPlayer player = null;
+    private String image_file_name;
+    int view_height, view_width, image_width, image_height, scale_factor;
     protected static List<RecordingEntity> list;
     private boolean isPlaying = true;
 
@@ -53,7 +57,7 @@ public class ViewDetails extends AppCompatActivity {
         last_name_field = findViewById(R.id.edit_last_name);
         date_field = findViewById(R.id.edit_date);
         desc_field = findViewById(R.id.edit_description);
-      //  photo_field = findViewById(R.id.photo_view);
+        image_field = findViewById(R.id.photo_view);
         setFields(item);
 
         play_button = findViewById(R.id.multiuse_button);
@@ -84,8 +88,9 @@ public class ViewDetails extends AppCompatActivity {
         desc_field.setText(item.getDescription());
         desc_field.setKeyListener(null);
         audio_file_name = item.getAudioFile();
-        //image_file_name = item.getImgFile();
-       // photo_field.setImageURI(Uri.parse(image_file_name));
+        image_file_name = item.getImgFile();
+        if(image_file_name != null)
+            setImage();
     }
 
     View.OnClickListener play_listener = new View.OnClickListener() {
@@ -134,6 +139,31 @@ public class ViewDetails extends AppCompatActivity {
     private void stopPlaying() {
         player.release();
         player = null;
+    }
+    void setImage(){
+
+            File test = new File(image_file_name);
+            if (test.exists()) {
+                //Create a smaller version of the file to use less memory
+                view_width = view_height = image_field.getWidth();
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(image_file_name, options);
+                image_height = options.outHeight;
+                image_width = options.outWidth;
+
+                //determine sizing
+                scale_factor = Math.min(image_width / view_width, image_height / view_height);
+
+                //Decode into the sized bitmap
+                options.inJustDecodeBounds = false;
+                options.inSampleSize = scale_factor;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(image_file_name, options);
+                image_field.setImageBitmap(bitmap);
+                image_field.setRotation(90);
+                image_field.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            }
     }
 
 }
