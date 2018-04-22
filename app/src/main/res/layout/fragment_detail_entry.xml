@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
+
         <!--Title-->
         <LinearLayout
             android:id="@+id/container_title"
@@ -28,6 +31,8 @@
                 android:inputType="textCapWords" />
 
         </LinearLayout>
+
+
 
         <!--Interviewee-->
         <LinearLayout
@@ -99,15 +104,23 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/photo_view"
+                android:layout_width="@dimen/larger_image_size"
+                android:layout_height="@dimen/larger_image_size"
+                android:layout_toLeftOf="@id/multiuse_button"
+                android:visibility="visible"
+                android:src="@drawable/ic_portrait_black_24dp"/>
+
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/play_button"
+                android:id="@+id/multiuse_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/enter_details_button"
                 android:enabled="true"
-                android:text="@string/string_skip"
+                android:text="@string/string_photo"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:visibility="invisible" />
+                android:visibility="visible" />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/enter_details_button"

@@ -25,6 +25,7 @@
     <string name="title_activity_recording">RecordingActivity</string>
     <string name="firstName">First Name</string>
     <string name="lastName">Last Name</string>
+    <string name="string_photo">Photo</string>
     <string name="description">Description</string>
 
 </resources>

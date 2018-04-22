@@ -1,12 +1,14 @@
 package com.example.denver.recorder_ui;
 
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -19,9 +21,11 @@ public class ViewDetails extends AppCompatActivity {
 
     private static final String LOG_TAG = "ViewDetails";
     private EditText title_field, first_name_field, last_name_field, date_field, desc_field;
+    ImageView photo_field;
     private AppCompatButton play_button, cancel_button;
     private RecordingDatabase RD;
-    private String file_name;
+    private String audio_file_name;
+    private String image_file_name;
     private MediaPlayer player = null;
     protected static List<RecordingEntity> list;
     private boolean isPlaying = true;
@@ -49,9 +53,10 @@ public class ViewDetails extends AppCompatActivity {
         last_name_field = findViewById(R.id.edit_last_name);
         date_field = findViewById(R.id.edit_date);
         desc_field = findViewById(R.id.edit_description);
+      //  photo_field = findViewById(R.id.photo_view);
         setFields(item);
 
-        play_button = findViewById(R.id.play_button);
+        play_button = findViewById(R.id.multiuse_button);
         play_button.setVisibility(View.VISIBLE);
         play_button.setText(R.string.string_start_playback);
         play_button.setOnClickListener(play_listener);
@@ -78,7 +83,9 @@ public class ViewDetails extends AppCompatActivity {
         date_field.setKeyListener(null);
         desc_field.setText(item.getDescription());
         desc_field.setKeyListener(null);
-        file_name = item.getAudioFile();
+        audio_file_name = item.getAudioFile();
+        //image_file_name = item.getImgFile();
+       // photo_field.setImageURI(Uri.parse(image_file_name));
     }
 
     View.OnClickListener play_listener = new View.OnClickListener() {
@@ -113,11 +120,11 @@ public class ViewDetails extends AppCompatActivity {
     private void startPlaying() {
         player = new MediaPlayer();
         try {
-            player.setDataSource(file_name);
+            player.setDataSource(audio_file_name);
             player.prepare();
             player.start();
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Couldn't load media file: " + file_name);
+            Log.e(LOG_TAG, "Couldn't load media file: " + audio_file_name);
         }
     }
 

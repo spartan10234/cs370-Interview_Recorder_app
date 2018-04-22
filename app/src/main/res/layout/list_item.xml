@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/list_item_icon"
-        android:layout_width="@dimen/image_size"
-        android:layout_height="@dimen/image_size"
+        android:layout_width="@dimen/small_image_size"
+        android:layout_height="@dimen/small_image_size"
         android:src="@drawable/ic_record_black_24dp"/>
     <TextView
         android:id="@+id/list_item_title"
