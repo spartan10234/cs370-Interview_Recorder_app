@@ -71,7 +71,7 @@ public class CameraTestFrag extends Fragment {
             try{
                 image_file = createImageFile();
             } catch (IOException e){
-                Toast.makeText(getActivity(), "Failur is dispatchTakePictureIntent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Failure in dispatchTakePictureIntent", Toast.LENGTH_SHORT).show();
             }
 
             if(image_file != null){
@@ -94,7 +94,30 @@ public class CameraTestFrag extends Fragment {
 //                bp.compress(Bitmap.CompressFormat.JPEG, 100, out);
 //                out.flush();
 //                out.close();
-                temp_image_view.setImageURI(photoUri);
+               // Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
+
+
+                int targetW = temp_image_view.getWidth();
+                int targetH = temp_image_view.getHeight();
+
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(file_path, bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+
+                // Determine how much to scale down the image
+                int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+                bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(file_path, bmOptions);
+                temp_image_view.setImageBitmap(bitmap);
+                //temp_image_view.setImageURI(photoUri);
             }
             catch (Exception e){
                 Toast.makeText(getActivity(),"SOMETHING FUCKED UP", Toast.LENGTH_SHORT).show();

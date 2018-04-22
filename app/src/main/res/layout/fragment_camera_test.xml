@@ -16,7 +16,8 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_centerHorizontal="true"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:rotation="90"/>
     <Button
         android:id="@+id/camera_button"
         android:layout_width="wrap_content"
