@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.example.denver.recorder_ui.R;
 import com.google.android.gms.plus.PlusOneButton;
 
+import junit.framework.Test;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,6 +33,8 @@ public class CameraTestFrag extends Fragment {
     Button temp_button;
     File image_directory;
     String file_path;
+    Uri selectedImage;
+    private Uri imageUri;
     public CameraTestFrag() {
         // Required empty public constructor
     }
@@ -61,6 +65,12 @@ public class CameraTestFrag extends Fragment {
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        String filename = "Test.jpg";
+        File photo = new File(image_directory, filename);
+
+        imageUri = Uri.parse(photo.getAbsolutePath());
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
         startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
     }
 
@@ -68,14 +78,8 @@ public class CameraTestFrag extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
            try {
-               File image = new File(image_directory, "Test.jpg");
-               Toast.makeText(getActivity(), image.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-               Bitmap bp = (Bitmap) data.getExtras().get("data");
-               FileOutputStream out = new FileOutputStream(image);
-               bp.compress(Bitmap.CompressFormat.JPEG, 90, out);
-               out.flush();
-               out.close();
-               temp_image_view.setImageBitmap(bp);
+               selectedImage = imageUri;
+               temp_image_view.setImageURI(imageUri);
            }
            catch (Exception e){
                Toast.makeText(getActivity(),"SOMETHING FUCKED UP", Toast.LENGTH_SHORT).show();
