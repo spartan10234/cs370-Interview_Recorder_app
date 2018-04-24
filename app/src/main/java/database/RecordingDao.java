@@ -25,4 +25,7 @@ public interface RecordingDao {
     @Query("SELECT * FROM recording_table WHERE recordingId LIKE :search")
     List<RecordingEntity> searchId(int search);
 
+    @Query("SELECT * FROM recording_table WHERE recordingId LIKE :search")
+    List<RecordingEntity> searchTitle(String search);
+
 }

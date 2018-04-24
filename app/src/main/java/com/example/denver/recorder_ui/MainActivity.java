@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
-import fragments.DatabaseTestFragment;
+import fragments.CameraTestFrag;
 import fragments.ListFragment;
 import fragments.DetailFragment;
 import fragments.SearchFragment;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_search:
 
                     toolBarText.setText(R.string.title_search);
-                    switchToSearchFragment();
+                    switchToCameraTestFragment();
                     return true;
             }
             return false;
@@ -124,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-   public void switchToDatabaseTestFragment(){
-        Fragment newFragment = new DatabaseTestFragment();
+   public void switchToCameraTestFragment(){
+        Fragment newFragment = new CameraTestFrag();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container,newFragment);
         transaction.addToBackStack(null);
