@@ -12,10 +12,10 @@
         android:icon="@drawable/ic_record_grey_24dp"
         android:title="@string/title_record" />
 
-    <item
-        android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_search_grey_24dp"
-        android:title="@string/title_search" />
+    <!--<item-->
+        <!--android:id="@+id/navigation_search"-->
+        <!--android:icon="@drawable/ic_search_grey_24dp"-->
+        <!--android:title="@string/title_search" />-->
 
 
 

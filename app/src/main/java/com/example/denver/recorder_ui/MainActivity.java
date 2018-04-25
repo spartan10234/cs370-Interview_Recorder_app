@@ -22,9 +22,8 @@ import fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    Fragment dFrag = new DetailFragment();
     public static MediaRecorder recorder = null;
-    private TextView toolBarText;
-    private Toolbar myToolbar;
 
     boolean editable = true;
 
@@ -43,19 +42,15 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
 
-                    toolBarText.setText(R.string.title_home);
+                    //toolBarText.setText(R.string.title_home);
                     switchToListFragment();
                     return true;
                 case R.id.navigation_record:
 
-                    toolBarText.setText(R.string.title_record);
-                    switchToDetailFragment();
+                    //toolBarText.setText(R.string.title_record);
+                    switchToFragment(dFrag);
                     return true;
-                case R.id.navigation_search:
 
-                    toolBarText.setText(R.string.title_search);
-                    switchToCameraTestFragment();
-                    return true;
             }
             return false;
         }
@@ -79,28 +74,14 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
         setContentView(R.layout.activity_main);
 
-        //Create Top Bar TextView
-        toolBarText = (TextView) findViewById(R.id.tool_text);
-
         //Create Bottom Navigation Menu
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         //Create Navigation Bar Item Select Listener
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        //Create Toolbar
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        //Select the active Action Bar
-        setSupportActionBar(myToolbar);
-        //Remove the app name from the action bar.
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
 
         //Initialize the home fragment
-        Fragment newFragment = new ListFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container,newFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        switchToListFragment();
 
 
 
@@ -132,10 +113,9 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void switchToSearchFragment(){
-        Fragment newFragment = new SearchFragment();
+    public void switchToFragment(Fragment frag){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container,newFragment);
+        transaction.replace(R.id.fragment_container,frag);
         transaction.addToBackStack(null);
         transaction.commit();
     }
