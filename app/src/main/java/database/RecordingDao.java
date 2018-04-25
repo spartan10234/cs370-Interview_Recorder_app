@@ -1,8 +1,10 @@
 package database;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -11,6 +13,12 @@ public interface RecordingDao {
 
     @Insert
     void insert(RecordingEntity recording);
+
+    @Update
+    void update(RecordingEntity recording);
+
+    @Delete
+    void delete(RecordingEntity recording);
 
     @Query("DELETE FROM recording_table")
     void deleteAll();
